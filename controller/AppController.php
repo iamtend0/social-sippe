@@ -11,6 +11,25 @@
  *
  * @author apuget29
  */
-class AppController {
-    //put your code here
+
+    
+if ( !isset($_GET['page']) ) {
+   require '../view/home.php'; 
+   exit();
 }
+
+switch($_GET['page']) {
+    case 'new-article':
+    break;
+    case 'home':
+        require '../view/home.php'; 
+        break;
+    case 'comment':
+        require '../view/home.php';
+        break;
+    default:
+        require '../view/home.php';
+}
+    
+   
+
