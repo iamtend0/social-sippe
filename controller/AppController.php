@@ -14,7 +14,7 @@
 
     
 if ( !isset($_GET['page']) ) {
-   require '../view/home.php'; 
+   require '../view/template/home.php'; 
    exit();
 }
 
@@ -22,13 +22,13 @@ switch($_GET['page']) {
     case 'new-article':
     break;
     case 'home':
-        require '../view/home.php'; 
+        require '../view/template/home.php'; 
         break;
     case 'comment':
-        require '../view/home.php';
+        require '../view/template/home.php';
         break;
     default:
-        require '../view/home.php';
+        require '../view/template/home.php';
 }
     
    
