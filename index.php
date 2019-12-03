@@ -6,6 +6,7 @@
  * and open the template in the editor.
  */
 
+
 /**
  * Description of AppController
  *
@@ -31,5 +32,3 @@ switch($_GET['page']) {
         require 'view/template/home.php';
 }
     
-   
-
