@@ -1,8 +1,12 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<div class="skeleton">
+    <div class="menu">
+        <?php
+            include "menu.php";
+        ?>
+    </div>
+    <div class="bodier">
+        <?php
+            // Place here the core of the app
+        ?>
+    </div>
+</div>
