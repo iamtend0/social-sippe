@@ -6,4 +6,3 @@
  * and open the template in the editor.
  */
 header('controller/AppController.php');
-include("./view/template/home.php");
