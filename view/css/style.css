@@ -1,1 +1,29 @@
+#formulaire {
+	width: 70%;
+	margin: 0 auto;
+}
 
+#formulaire > div {
+	margin: 20px 0;
+	padding: 20px;
+}
+
+#username {
+	color: #007bff;
+}
+
+#post {
+	margin: 15px 0;
+}
+
+#form2 form div > * {
+	display: inline-block;
+}
+
+#form2 form textarea {
+	margin-top: 20px;
+}
+
+#counter {
+	margin: 0 20px 0 10px;
+}
