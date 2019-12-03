@@ -18,18 +18,19 @@
 	<![endif]-->
 </head>
 <body>
-    <div class="skeleton">
-        <div class="menu">
-            <?php
-                include "menu.php";
-            ?>
-        </div>
-        <div class="bodier">
-            <?php
-                include "form.php"
-            ?>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3 sidemenu">
+                <?php
+                    include "menu.php"
+                ?>
+            </div>
+            <div class="col-9 core">
+                <?php
+                    include "form.php"
+                ?>
+            </div>
         </div>
     </div>
-	<script src="view/js/custom.js"></script>
 </body>
 </html>
