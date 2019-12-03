@@ -1,6 +1,6 @@
-<div class="panneau">
-    <h2>Trier l'affichage</h2>
-    <div class="bloque">
+<div class="card">
+    <div class="card-header"><h2>Trier l'affichage</h2></div>
+    <div class="card-body">
         <input type="checkbox"> Images<br>
         <input type="checkbox"> Messages<br>
         <input type="radio" name="comments" value="avec"> Avec<br>
