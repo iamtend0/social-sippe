@@ -6,3 +6,8 @@
  * and open the template in the editor.
  */
 
+function createArticle($text, $image) {
+    if ($text == null && $image == null) {
+        return 'error, must have text or image';
+    }
+}
