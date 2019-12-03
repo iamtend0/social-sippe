@@ -5,4 +5,4 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-header('controller/AppController.php');
+header('Location: controller/AppController.php');
