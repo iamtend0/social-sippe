@@ -23,8 +23,8 @@ $dbh = new PDO('mysql:host='.$servername.';dbname='.$social_sippe,
 function logIn($email, $password) {
     
     $errMsg = "";
-    if($username == '')
-        $errMsg = 'Enter username';
+    if($email == '')
+        $errMsg = 'Enter email';
     if($password == '')
         $errMsg = 'Enter password';
     
