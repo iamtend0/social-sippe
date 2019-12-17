@@ -31,4 +31,5 @@ switch($_GET['page']) {
     default:
         require 'view/template/home.php';
 }
-    
+
+
