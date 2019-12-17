@@ -23,8 +23,8 @@ $dbh = new PDO('mysql:host='.$servername.';dbname='.$social_sippe,
 function logIn($email, $password) {
     
     $errMsg = "";
-    if($username == '')
-        $errMsg = 'Enter username';
+    if($email == '')
+        $errMsg = 'Enter email';
     if($password == '')
         $errMsg = 'Enter password';
     
@@ -50,7 +50,7 @@ function logIn($email, $password) {
                 }
             } catch(PDOException $e) {
 		$errMsg = $e->getMessage();
-            }
+        }
     }
     
     return $errMsg;
@@ -62,3 +62,40 @@ function logIn($email, $password) {
 function logOut() {
     session_destroy();
 }
+
+
+function signUp($email, $nom, $prenom, $password) {
+    
+    $errMsg = '';
+    // Get data from FROM
+    if ($nom == '')
+        $errMsg = 'Entrez un nom';
+    if ($prenom == '')
+        $errMsg = 'Entrez un prénom';
+    if ($password == '')
+        $errMsg = 'Entrez un mot de passe';
+    if ($email == '')
+        $errMsg = 'Entrez une adresse email';
+    
+    if ($errMsg == '') {
+        
+        // @TODO search if email already exists
+        
+        try {
+            $stmt = $dbh->prepare('INSERT INTO users (email, nom, prenom, password, date_creation) '
+                    . 'VALUES (:email, :nom, :prenom, :password, :date_creation)');
+            $stmt->execute(array(
+                ':email' => $email,
+                ':nom' => $nom,
+                ':prenom' => $prenom,
+                ':password' => $password,
+                ':date_creation' => date()
+            ));
+            $errMsg = "ok";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    return $errMsg;
+}
+

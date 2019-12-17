@@ -31,10 +31,12 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
   `id_article` int(10) NOT NULL,
+  `ref_user` int(10) NOT NULL,
   `link_img` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `date_publication` date DEFAULT NULL,
   PRIMARY KEY (`id_article`)
+  KEY `ref_user` (`ref_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
