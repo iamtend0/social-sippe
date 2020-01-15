@@ -10,18 +10,22 @@
 	color: #007bff;
 }
 
-#post {
+#content {
 	margin: 15px 0;
 }
 
-#form2 form div > * {
+div[id^=article] form div > * {
 	display: inline-block;
 }
-#form2 {
+div[id^=article] {
 	margin-top: 20px;
 }
-#form2 form textarea {
+div[id^=article] form textarea {
 	margin-top: 20px;
+}
+
+.content {
+	margin: 15px 0 15px 0;
 }
 
 #counter {
