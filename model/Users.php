@@ -10,7 +10,7 @@ $dbname = "social_sippe";
 $username = "root";
 $password = "";
 
-$dbh = new PDO('mysql:host='.$servername.';dbname='.$social_sippe, 
+$dbh = new PDO('mysql:host='.$servername.';dbname='.$dbname,
                         $username, $password);
 
 
