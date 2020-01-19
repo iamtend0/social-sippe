@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
-  `id_article` int(10) NOT NULL,
+  `id_article` int(10) NOT NULL AUTO_INCREMENT,
   `ref_user` int(10) NOT NULL,
   `link_img` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `date_publication` date DEFAULT NULL,
   PRIMARY KEY (`id_article`),
   KEY `ref_user` (`ref_user`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -47,12 +47,14 @@ CREATE TABLE IF NOT EXISTS `articles` (
 
 DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
-  `id_comment` int(10) NOT NULL,
+  `id_comment` int(10) NOT NULL AUTO_INCREMENT,
   `ref_user` int(10) NOT NULL,
+  `ref_article` int(10) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id_comment`),
-  KEY `ref_user` (`ref_user`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  KEY `ref_user` (`ref_user`),
+  KEY `ref_article` (`ref_article`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -62,14 +64,14 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 DROP TABLE IF EXISTS `likes`;
 CREATE TABLE IF NOT EXISTS `likes` (
-  `id_like` int(10) NOT NULL,
+  `id_like` int(10) NOT NULL AUTO_INCREMENT,
   `ref_user` int(10) NOT NULL,
   `ref_article` int(10) NOT NULL,
   `date_like` date DEFAULT NULL,
   PRIMARY KEY (`id_like`),
   KEY `ref_user` (`ref_user`),
   KEY `ref_article` (`ref_article`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -79,14 +81,14 @@ CREATE TABLE IF NOT EXISTS `likes` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id_user` int(10) NOT NULL,
+  `id_user` int(10) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `nom` varchar(200) NOT NULL,
   `prenom` varchar(200) NOT NULL,
   `password` varchar(255) NOT NULL,
   `date_creation` date DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
