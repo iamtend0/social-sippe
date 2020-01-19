@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `link_img` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `date_publication` date DEFAULT NULL,
-  PRIMARY KEY (`id_article`)
+  PRIMARY KEY (`id_article`),
   KEY `ref_user` (`ref_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
