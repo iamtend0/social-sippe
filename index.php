@@ -167,6 +167,17 @@ else if (isset($_POST['comments'])) {
     require 'view/template/home.php';
 }
 
+// Ajouter un nouveau commentaire
+else if (isset($_POST['comment'])) {
+    $user = $_SESSION['id_user'];
+    $id_article = $_POST['id_article'];
+    $description = $_POST['mycomment'];
+    $article = new Articles();
+    $article->newComment($user, $id_article, $description);
+    require 'view/template/home.php';
+    exit();
+}
+
 else {
     require 'view/template/home.php';
 }

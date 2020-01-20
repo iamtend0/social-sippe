@@ -61,7 +61,7 @@ class Articles
      *
      * @return
      */
-    public function fetchArticles($nbPosts, $options, $comments)
+    public function fetchArticles($nbPosts, $options)
     {
         $errorMessage = '';
 
@@ -71,15 +71,15 @@ class Articles
 
                 $sql = "";
                 $text = "";
-                $comments == "avec" ? $text = 'AND comments.description IS NOT NULL' : $text = 'AND comments.description IS NULL';
+
                 if (in_array("images", $options) && (sizeof($options) == 1)) {
-                    $sql = 'SELECT nom, prenom, id_article, articles.ref_user, link_img, articles.description, date_publication, (SELECT COUNT(*) FROM likes WHERE ref_article = id_article) as nb_likes, comments.description as comments_description FROM articles LEFT JOIN likes ON articles.id_article = likes.ref_article INNER JOIN users LEFT JOIN comments ON articles.id_article = comments.ref_article WHERE articles.ref_user = id_user '.$text.' AND link_img IS NOT NULL ORDER BY id_article DESC LIMIT '.$nbPosts.'';
+                    $sql = 'SELECT nom, prenom, id_article, articles.ref_user, link_img, articles.description, date_publication, (SELECT COUNT(*) FROM likes WHERE ref_article = id_article) as nb_likes FROM articles LEFT JOIN likes ON articles.id_article = likes.ref_article INNER JOIN users WHERE articles.ref_user = id_user AND link_img IS NOT NULL ORDER BY id_article DESC LIMIT '.$nbPosts.'';
                 } else if (in_array("messages", $options) && (sizeof($options) == 1)) {
-                    $sql = 'SELECT nom, prenom, id_article, articles.ref_user, link_img, articles.description, date_publication, (SELECT COUNT(*) FROM likes WHERE ref_article = id_article) as nb_likes, comments.description as comments_description FROM articles LEFT JOIN likes ON articles.id_article = likes.ref_article INNER JOIN users LEFT JOIN comments ON articles.id_article = comments.ref_article WHERE articles.ref_user = id_user '.$text.' AND link_img IS NULL ORDER BY id_article DESC LIMIT '.$nbPosts.'';
+                    $sql = 'SELECT nom, prenom, id_article, articles.ref_user, link_img, articles.description, date_publication, (SELECT COUNT(*) FROM likes WHERE ref_article = id_article) as nb_likes FROM articles LEFT JOIN likes ON articles.id_article = likes.ref_article INNER JOIN users WHERE articles.ref_user = id_user AND link_img IS NULL ORDER BY id_article DESC LIMIT '.$nbPosts.'';
                 } else if (in_array("empty", $options)) {
                     $sql = "";
                 } else {
-                    $sql = 'SELECT nom, prenom, id_article, articles.ref_user, link_img, articles.description, date_publication, (SELECT COUNT(*) FROM likes WHERE ref_article = id_article) as nb_likes, comments.description as comments_description FROM articles LEFT JOIN likes ON articles.id_article = likes.ref_article INNER JOIN users LEFT JOIN comments ON articles.id_article = comments.ref_article WHERE articles.ref_user = id_user '.$text.' ORDER BY id_article DESC LIMIT '.$nbPosts;
+                    $sql = 'SELECT nom, prenom, id_article, articles.ref_user, link_img, articles.description, date_publication, (SELECT COUNT(*) FROM likes WHERE ref_article = id_article) as nb_likes FROM articles LEFT JOIN likes ON articles.id_article = likes.ref_article INNER JOIN users WHERE articles.ref_user = id_user ORDER BY id_article DESC LIMIT '.$nbPosts;
                 }
 
                 if ($sql != "") {
@@ -207,4 +207,51 @@ class Articles
 
         return $errorMessage;
     }
+
+    public function newComment($user, $idArticle, $description) {
+        $errorMessage = '';
+
+        if($description == '') {
+            $errorMessage = 'Commentaire inexistant';
+        }
+
+        if ($errorMessage == '') {
+            try {
+                $dbh = $this->dbConnect();
+
+                $date = date('Y-m-d');
+                $stmt = $dbh->prepare('INSERT INTO comments (ref_user, ref_article, description) 
+                                                VALUES(:ref_user, :ref_article, :description)');
+                $stmt->execute(array(
+                    ':ref_user' => $user,
+                    ':ref_article' => $idArticle,
+                    ':description' => $description,
+                ));
+                $errorMessage = 'Commentaire publié.';
+            } catch (PDOException $e) {
+                $errorMessage = $e->getMessage();
+            }
+        }
+
+        return $errorMessage;
+    }
+
+    public function displayComments($idArticle)
+    {
+
+        try {
+            $dbh = $this->dbConnect();
+
+            $sql = 'SELECT * FROM comments, users WHERE ref_article = ' .$idArticle.' AND ref_user = id_user';
+            $data = $dbh->query($sql);
+
+            return $data;
+
+        } catch (PDOException $e) {
+            $errorMessage = $e->getMessage();
+        }
+
+        return $errorMessage;
+    }
+
 }

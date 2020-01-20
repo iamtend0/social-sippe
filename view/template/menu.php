@@ -3,8 +3,8 @@
     <div class="card-body">
         <input type="checkbox" name="option[]" value="images" checked> Images<br>
         <input type="checkbox" name="option[]" value="messages" checked> Messages<br>
-        <input type="radio" name="comments" value="avec"> Avec commentaires<br>
-        <input type="radio" name="comments" value="sans" checked> Sans commentaires<br>
+        <input type="radio" name="comments" value="avec" checked> Avec commentaires<br>
+        <input type="radio" name="comments" value="sans"> Sans commentaires<br>
         <label>Nombre de post ? </label>
         <select name="pets" id="pet-select">
             <option value="10" selected>10</option>

@@ -109,17 +109,12 @@
         });
 
         // Choisir les articles avec ou sans commentaires
-        var comments = localStorage.getItem('comments');
         $('input[type="radio"]').click(function(){
-            if ($(this).prop("checked") == true) {
-                comments = $(this).val();
+            if ($(this).val() == "avec") {
+                $("#comments").css("display", "block");
+            } else {
+                $("#comments").css("display", "none");
             }
-            console.log(comments);
-            localStorage.setItem('comments', comments);
-            $.post('index.php', {option_value: localStorage.getItem('nbPosts'), optionsChecked: JSON.parse(localStorage.getItem('optionsChecked')), comments: localStorage.getItem('comments')}, function(data){
-                $('#articles').remove();
-                $('.col-9 .card-body').append($(data).find('#articles'));
-            });
         });
 
     });

@@ -190,7 +190,6 @@ class Users {
 
         }
 
-
         return $errMsg;
     }
 }

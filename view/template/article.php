@@ -15,11 +15,12 @@
         $comments = $_POST['comments'];
     }
 
-    $articles = $article->fetchArticles($nbPosts, $options, $comments);
+    $articles = $article->fetchArticles($nbPosts, $options);
     if ($articles != 'Ne pas afficher') {
         while ($data = $articles->fetch()) {
             ?>
-            <div id="article<?= $data['id_article']; ?>">
+            <div class="card" id="article<?= $data['id_article']; ?>">
+            <div class="card-body">
                 <div class="username"><?= $data['prenom'] . " " . $data['nom']; ?></div>
                 <div class="date"><?= $data['date_publication']; ?></div>
                 <?php
@@ -31,7 +32,9 @@
                 <?php
                     } ?>
                 <div class="content"><?= $data['description']; ?></div>
-                <form>
+                <form method="POST" action="<?php dirname(__FILE__) ?>">
+                    <input type="hidden" name="comment" value="true"/>
+                    <input type="hidden" name="id_article" value="<?= $data['id_article'] ?>"/>
                     <div>
                         <div class="aimer" name="aimer">
                         <?php
@@ -41,10 +44,25 @@
                         <i class="<?= $classname ?>"></i>
                         </div>
                         <div id="counter"><?= $data['nb_likes']; ?></div>
-                        <button type="button" class="btn btn-primary">Commenter</button>
+                        <button type="submit" class="btn btn-primary">Commenter</button>
                     </div>
-                    <textarea class="form-control" class="comment" placeholder="Votre commentaire ?" rows="3"></textarea>
+                    <textarea required name="mycomment" class="form-control" class="comment" placeholder="Votre commentaire ?" rows="3"></textarea>
                 </form>
+
+                <div id="comments">
+                <?php
+                    $commentaires = $article->displayComments((int)$data['id_article']);
+                    foreach ($commentaires as $commentaire) { ?>
+                        <hr>
+                            <div id="comments<?=$commentaire['id_comment']?>">
+                                <div class="username"><?= $commentaire['prenom'] . " " . $commentaire['nom']; ?></div>
+                                <p><?= $commentaire['description'] ?></p>
+                            </div>
+                    <?php
+                    }
+                ?>
+                </div>
+            </div>
             </div>
         <?php
         }
