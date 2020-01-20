@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Connexion</title>
+    <title>Inscription</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="view/css/style.css">
@@ -24,7 +24,7 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Connexion</h5>
+                    <h5 class="card-title text-center">Création de compte</h5>
                     <?php
                     if(isset($err)) {
                         echo '
@@ -33,22 +33,24 @@
                         </div>';
                     }
                     ?>
-                    <?php
-                    if(isset($info)) {
-                    echo '
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        '.$info.'
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>';
-                    }
-                    ?>
 
-                    <form class="form-signin" method="POST" action="<?php dirname(__FILE__) ?>?page=login">
+                    <form class="form-signup" method="POST" action="<?php dirname(__FILE__) ?>?page=signup">
+
+                        <input type="hidden" name="signup" value="true"/>
+
                         <div class="form-label-group">
                             <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                             <label for="inputEmail">Adresse email</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input name="name" type="text" id="inputEmail" class="form-control" placeholder="Nom" required>
+                            <label for="inputName">Nom</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input name="firstname" type="text" id="inputFirstname" class="form-control" placeholder="Prénom" required>
+                            <label for="inputFirstname">Prénom</label>
                         </div>
 
                         <div class="form-label-group">
@@ -56,14 +58,9 @@
                             <label for="inputPassword">Mot de passe</label>
                         </div>
 
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Se souvenir du mot de passe</label>
-                        </div>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Se connecter</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">S'inscrire</button>
                         <hr class="my-4">
                     </form>
-                    <a href="<?php dirname(__FILE__) ?>?page=signup"><button class="btn btn-lg btn-google btn-block text-uppercase" type="button"><i class="fab fa-google mr-2"></i> Créer un nouveau compte</button></a>
                 </div>
             </div>
         </div>

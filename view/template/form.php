@@ -1,7 +1,7 @@
 <?php
-	$pedro = 'Pedro le beauf';
-	/* $firstname = $_SESSION["prenom"];
-	$lastname = $_SESSION["nom"]; */
+//	$pedro = 'Pedro le beauf';
+	$firstname = $_SESSION["prenom"];
+	$lastname = $_SESSION["nom"];
 	
 	$message = "";
 	if (isset($vars)) {
@@ -12,8 +12,13 @@
 
 <div class="card">
 	<div class="card-header">
-		<h1 class="text-center">Bonjour <!-- <?= $firstname . " " . $lastname ?> --></h1>
-	</div>
+		<h1 class="text-center">Bonjour <?= $firstname . " " . $lastname ?> </h1>
+        <form method="POST" action="<?php dirname(__FILE__) ?>">
+            <input type="hidden" name="logout" value="true"/>
+            <button type="submit" class="btn btn-secondary btn-sm logout">Se déconnecter</button>
+        </form>
+
+    </div>
 	<div class="card-body">
 		<div id="form">
 			<form action="index.php" method="POST" enctype="multipart/form-data">
